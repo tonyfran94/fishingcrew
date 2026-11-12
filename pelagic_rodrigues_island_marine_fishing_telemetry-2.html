@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="mfe" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
@@ -74,7 +74,6 @@
       box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
     }
 
-    /* Hide scrollbars on horizontal pill strips while keeping scroll */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -83,7 +82,6 @@
       scrollbar-width: none;
     }
 
-    /* Pulse animation for active fish hotspots and radar */
     @keyframes sonarPulse {
       0% { transform: scale(0.95); opacity: 0.85; }
       70% { transform: scale(1.8); opacity: 0; }
@@ -95,7 +93,6 @@
       transform-box: fill-box;
     }
 
-    /* Bottom nav safe area padding */
     .pb-mobile-nav {
       padding-bottom: calc(5.25rem + var(--safe-bottom));
     }
@@ -109,7 +106,6 @@
       padding-bottom: calc(0.4rem + var(--safe-bottom));
     }
 
-    /* Custom touch range / scrub feedback */
     #tideChartCanvas, #rodriguesMapCanvas {
       touch-action: none;
     }
@@ -124,7 +120,6 @@
       <!-- Brand & Live MUT Clock -->
       <div class="flex items-center gap-2.5 min-w-0">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 shrink-0">
-          <!-- Compass / Radar Icon -->
           <svg class="w-6 h-6 text-slate-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
             <circle cx="12" cy="12" r="9"/>
             <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor"/>
@@ -140,7 +135,7 @@
             <span>•</span>
             <span id="dataSourceBadge" class="inline-flex items-center gap-1 text-emerald-400 font-semibold">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              LIVE API
+              API AN DIRK
             </span>
           </div>
         </div>
@@ -148,38 +143,35 @@
 
       <!-- Right Controls: Sea Status Pill, Sunlight Mode Toggle, Refresh -->
       <div class="flex items-center gap-1.5 sm:gap-2">
-        <!-- Sea Condition Status Pill -->
         <button onclick="switchMobileTab('overview')" id="seaStatusPill" class="min-h-[44px] px-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide flex items-center gap-1.5 bg-amber-500/15 text-amber-400 border border-amber-500/40 active:scale-95 transition">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-          <span id="seaStatusText">CAUTION</span>
+          <span id="seaStatusText">ATANSION</span>
         </button>
 
-        <!-- Daylight / Bridge Dark Toggle -->
-        <button id="themeToggleBtn" onclick="toggleGlareMode()" aria-label="Toggle Daylight High-Contrast Mode" class="min-h-[44px] min-w-[44px] px-2.5 rounded-xl marine-card flex items-center justify-center gap-1.5 text-xs font-semibold active:scale-95 transition" title="Switch between Bridge Dark and Sunlight High-Contrast">
+        <button id="themeToggleBtn" onclick="toggleGlareMode()" aria-label="Sanz metod ekran" class="min-h-[44px] min-w-[44px] px-2.5 rounded-xl marine-card flex items-center justify-center gap-1.5 text-xs font-semibold active:scale-95 transition" title="Sanz antre Mode Nwar ek Gran Solé">
           <svg id="themeIconSun" class="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
           </svg>
-          <span class="hidden md:inline" id="themeLabel">Sunlight</span>
+          <span class="hidden md:inline" id="themeLabel">Solé</span>
         </button>
 
-        <!-- One-Tap Telemetry Refresh -->
-        <button id="refreshBtn" onclick="refreshTelemetry()" aria-label="Refresh Marine Telemetry" class="min-h-[44px] min-w-[44px] rounded-xl marine-card flex items-center justify-center text-cyan-400 active:scale-95 transition" title="Refresh Marine Data">
+        <button id="refreshBtn" onclick="refreshTelemetry()" aria-label="Rafresir Telemetri" class="min-h-[44px] min-w-[44px] rounded-xl marine-card flex items-center justify-center text-cyan-400 active:scale-95 transition" title="Rafresir Done Lamer">
           <svg id="refreshIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/>
           </svg>
         </button>
       </div>
 
-      <!-- Full-Width Mobile / Compact Desktop Sector Selector Bar -->
+      <!-- Full-Width Sector Selector Bar -->
       <div class="w-full pt-1 flex items-center gap-2">
-        <label for="sectorSelect" class="sr-only">Select Rodrigues Island Marine Sector</label>
+        <label for="sectorSelect" class="sr-only"> swazir Sekter Lamer Rodrigues</label>
         <div class="relative flex-1">
           <select id="sectorSelect" onchange="changeSector(this.value)" class="w-full min-h-[44px] pl-3.5 pr-10 rounded-xl marine-card text-sm sm:text-base font-semibold appearance-none focus:outline-none focus:ring-2 focus:ring-cyan-400 cursor-pointer">
-            <option value="port_mathurin">📍 Port Mathurin &amp; North Pass (19.67°S, 63.42°E)</option>
-            <option value="grand_bassin">🌊 Passe Grand Bassin &amp; Rivière Banane (19.67°S, 63.47°E)</option>
-            <option value="mourouk">🏝️ Mourouk &amp; SE Lagoon Flats (19.76°S, 63.46°E)</option>
+            <option value="port_mathurin">📍 Port Mathurin &amp; Pass Nò (19.67°S, 63.42°E) - Pas pou Sorti Dan Lagon</option>
+            <option value="grand_bassin">🌊 Passe Grand Bassin &amp; Rivière Banane (19.67°S, 63.47°E) - Pas pou Sorti Dan Lagon</option>
+            <option value="mourouk">🏝️ Mourouk &amp; Fon Lagon Sid-Es (19.76°S, 63.46°E)</option>
             <option value="baie_du_nord">🐢 Baie du Nord &amp; Île aux Cocos (19.71°S, 63.31°E)</option>
-            <option value="hawkins_bank">🎣 Hawkins Bank Offshore FADs (19.45°S, 63.28°E)</option>
+            <option value="hawkins_bank">🎣 Hawkins Bank Large Lamer (19.45°S, 63.28°E)</option>
           </select>
           <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-cyan-400">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -191,26 +183,25 @@
     </div>
   </header>
 
-  <!-- TOAST NOTIFICATION BANNER (Replaces alert) -->
+  <!-- TOAST NOTIFICATION BANNER -->
   <div id="toastBanner" class="fixed top-28 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 transform -translate-y-2 w-[92%] max-w-md">
     <div class="bg-slate-900/95 text-white border border-cyan-400/50 shadow-2xl rounded-2xl px-4 py-3 flex items-center gap-3 backdrop-blur-md">
       <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0"></span>
-      <p id="toastMessage" class="text-sm font-medium">Telemetry updated</p>
+      <p id="toastMessage" class="text-sm font-medium">Telemetri finn rafrechi</p>
     </div>
   </div>
 
   <!-- MAIN CONTENT WORKSPACE -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-5 pt-3 pb-mobile-nav">
     
-    <!-- Desktop Grid Layout (>=900px shows multi-column bridge; <900px switches tabs cleanly) -->
     <div class="grid grid-cols-1 min-[900px]:grid-cols-12 gap-4 items-start">
 
       <!-- ============================================================== -->
-      <!-- TAB 1: OVERVIEW & DANGEROUS SEA ALERTS (Left/Top on Desktop)   -->
+      <!-- TAB 1: OVERVIEW & PAS / LAGON SORTI ALERTS                     -->
       <!-- ============================================================== -->
       <section id="tab-overview" class="tab-panel min-[900px]:col-span-5 space-y-4">
         
-        <!-- Dynamic Dangerous Sea & Pass Condition Alert Card -->
+        <!-- Pas pou Sorti Dan Lagon - Spisifikasion & Alenn -->
         <div id="seaAlertCard" class="rounded-2xl p-4 border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/15 via-orange-950/20 to-transparent shadow-lg">
           <div class="flex items-start justify-between gap-3">
             <div class="flex items-center gap-2.5">
@@ -220,17 +211,17 @@
                 </svg>
               </div>
               <div>
-                <span id="alertSeverityBadge" class="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-400">PASS &amp; REEF ADVISORY</span>
-                <h2 id="alertHeadline" class="font-bold text-base sm:text-lg leading-tight mt-0.5">Moderate SE Trade Swell in Passes</h2>
+                <span id="alertSeverityBadge" class="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-400">PAS EK RIF ADVIZ</span>
+                <h2 id="alertHeadline" class="font-bold text-base sm:text-lg leading-tight mt-0.5">Laoul Sid-Es dan Bann Pas pou Sorti</h2>
               </div>
             </div>
           </div>
           <p id="alertDetails" class="text-sm opacity-90 mt-2.5 leading-relaxed">
-            Outgoing ebb tide opposing 18 kt SE trades creates steep standing waves in Passe Grand Bassin and Passe St. François. Keep 1.8m+ under-keel clearance over lagoon coral heads.
+            Pandan lamer desann (ebb tide) ki pe kontre vent 18 noeuds Sid-Es, li fer bann gro laf-disan kraz sou dan Passe Grand Bassin ek Passe St. François. Touletan fer atansyon ek gard enn marg 1.8m anba quille lor bann pator coral dan lagon.
           </p>
           <div class="mt-3 pt-2.5 border-t border-amber-500/20 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-            <span id="alertPassRisk" class="text-amber-300 font-semibold">PASS RISK: MODERATE (1.9m)</span>
-            <span id="alertLagoonChop" class="opacity-80">LAGOON: 0.6m CHOP</span>
+            <span id="alertPassRisk" class="text-amber-300 font-semibold">RIS PAS LA: MODERE (1.9m)</span>
+            <span id="alertLagoonChop" class="opacity-80">LAGON: 0.6m HOULE</span>
           </div>
         </div>
 
@@ -239,7 +230,7 @@
           <!-- Card 1: Swell & Waves -->
           <div class="marine-card rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between">
             <div class="flex items-center justify-between text-xs font-semibold opacity-75">
-              <span>OUTER SWELL</span>
+              <span>LAOUL DEHOR</span>
               <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
               </svg>
@@ -250,13 +241,13 @@
               </div>
               <div id="metricSwellPeriod" class="text-xs font-mono text-cyan-400 mt-0.5">11s • ESE (115°)</div>
             </div>
-            <div id="metricLagoonWave" class="text-[11px] opacity-75 font-medium">Lagoon inside reef: ~0.5m</div>
+            <div id="metricLagoonWave" class="text-[11px] opacity-75 font-medium">Lagon andan rif: ~0.5m</div>
           </div>
 
           <!-- Card 2: Wind & Gusts -->
           <div class="marine-card rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between">
             <div class="flex items-center justify-between text-xs font-semibold opacity-75">
-              <span>TRADE WIND</span>
+              <span>VENT TRADE (ALIZÉ)</span>
               <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>
               </svg>
@@ -265,69 +256,69 @@
               <div class="text-2xl sm:text-3xl font-extrabold tabular-nums tracking-tight">
                 <span id="metricWindSpeed">17</span><span class="text-base font-semibold opacity-70 ml-0.5">kt</span>
               </div>
-              <div id="metricWindDir" class="text-xs font-mono text-emerald-400 mt-0.5">ESE 112° • Gusts 23kt</div>
+              <div id="metricWindDir" class="text-xs font-mono text-emerald-400 mt-0.5">ESE 112° • Rafal 23kt</div>
             </div>
-            <div id="metricBeaufort" class="text-[11px] opacity-75 font-medium">Beaufort 5 • Fresh Breeze</div>
+            <div id="metricBeaufort" class="text-[11px] opacity-75 font-medium">Beaufort 5 • Briz Fre</div>
           </div>
 
           <!-- Card 3: Next Tide (Port Mathurin) -->
           <button onclick="switchMobileTab('tides')" class="marine-card rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between text-left active:scale-[0.98] transition">
             <div class="flex items-center justify-between text-xs font-semibold opacity-75 w-full">
-              <span>NEXT TIDE</span>
-              <span id="metricTideStateBadge" class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-cyan-500/20 text-cyan-400">RISING</span>
+              <span>PROCHIN MARE</span>
+              <span id="metricTideStateBadge" class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-cyan-500/20 text-cyan-400">MONTE</span>
             </div>
             <div class="my-2">
               <div class="text-2xl sm:text-3xl font-extrabold tabular-nums tracking-tight" id="metricNextTideTime">13:42</div>
-              <div id="metricNextTideHeight" class="text-xs font-mono text-cyan-400 mt-0.5">HIGH • 1.48m (+0.9m)</div>
+              <div id="metricNextTideHeight" class="text-xs font-mono text-cyan-400 mt-0.5">OBA • 1.48m (+0.9m)</div>
             </div>
             <div class="text-[11px] opacity-75 font-medium flex items-center justify-between w-full">
               <span>Port Mathurin</span>
-              <span class="text-cyan-400 font-semibold">Curve →</span>
+              <span class="text-cyan-400 font-semibold">Gaf Kourb →</span>
             </div>
           </button>
 
           <!-- Card 4: Fishing Bite Index -->
           <button onclick="switchMobileTab('map')" class="marine-card rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between text-left active:scale-[0.98] transition">
             <div class="flex items-center justify-between text-xs font-semibold opacity-75 w-full">
-              <span>BITE SCORE</span>
-              <span class="text-emerald-400 font-mono text-[11px] font-bold">PRIME</span>
+              <span>NIVO LAPES</span>
+              <span class="text-emerald-400 font-mono text-[11px] font-bold">BON</span>
             </div>
             <div class="my-2">
               <div class="text-2xl sm:text-3xl font-extrabold tabular-nums tracking-tight text-emerald-400">
                 <span id="metricBiteScore">86</span><span class="text-base font-semibold opacity-70">/100</span>
               </div>
-              <div id="metricTargetSpecies" class="text-xs font-medium mt-0.5 truncate">GT, Dogtooth, Wahoo</div>
+              <div id="metricTargetSpecies" class="text-xs font-medium mt-0.5 truncate">GT, Tafi, Wahoo</div>
             </div>
             <div class="text-[11px] opacity-75 font-medium flex items-center justify-between w-full">
-              <span id="metricSST">SST 26.4°C • 1015 hPa</span>
-              <span class="text-emerald-400 font-semibold">Spots →</span>
+              <span id="metricSST">Dlo 26.4°C • 1015 hPa</span>
+              <span class="text-emerald-400 font-semibold">Plas →</span>
             </div>
           </button>
         </div>
 
-        <!-- Secondary Telemetry Strip (SST, Barometer, Visibility, Moon) -->
+        <!-- Secondary Telemetry Strip -->
         <div class="marine-card rounded-2xl p-3.5 grid grid-cols-3 gap-2 text-center divide-x divide-sky-500/15">
           <div>
-            <div class="text-[11px] font-semibold opacity-65 uppercase">Water Temp</div>
+            <div class="text-[11px] font-semibold opacity-65 uppercase">Chaler Dlo</div>
             <div id="stripSST" class="text-base sm:text-lg font-bold font-mono tabular-nums mt-0.5 text-cyan-400">26.4°C</div>
           </div>
           <div>
-            <div class="text-[11px] font-semibold opacity-65 uppercase">Pressure</div>
+            <div class="text-[11px] font-semibold opacity-65 uppercase">Presyon</div>
             <div id="stripPressure" class="text-base sm:text-lg font-bold font-mono tabular-nums mt-0.5">1015 hPa</div>
           </div>
           <div>
-            <div class="text-[11px] font-semibold opacity-65 uppercase">Moon / Solunar</div>
+            <div class="text-[11px] font-semibold opacity-65 uppercase">Lalin / Solinar</div>
             <div id="stripMoon" class="text-base sm:text-lg font-bold font-mono tabular-nums mt-0.5 text-amber-400">🌓 64%</div>
           </div>
         </div>
 
-        <!-- Quick Emergency VHF Ch 16 & Tactical Radar Launch Bar (Mobile convenience) -->
+        <!-- Emergency VHF Ch 16 & Radar Launch Bar -->
         <div class="grid grid-cols-2 gap-3 min-[900px]:hidden">
           <button onclick="switchMobileTab('map')" class="min-h-[52px] rounded-2xl bg-cyan-500 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 active:scale-95 transition">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
               <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
             </svg>
-            Open Fish Radar
+            Radar Lamer
           </button>
           <button onclick="switchMobileTab('vhf')" class="min-h-[52px] rounded-2xl bg-rose-600 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-rose-600/25 active:scale-95 transition">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
@@ -337,117 +328,109 @@
           </button>
         </div>
 
-        <!-- Rodrigues Island Top Active Fish Bites List (Tap to jump to spot on map) -->
+        <!-- Hotspots list -->
         <div class="marine-card rounded-2xl p-4">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="font-bold text-base">Active Rodrigues Hotspots</h3>
-              <p class="text-xs opacity-70">Tap any mark to inspect depth, lure &amp; drift</p>
+              <h3 class="font-bold text-base">Plas Lapes Aktif Rodrigues</h3>
+              <p class="text-xs opacity-70">Tap nenport mark pou trouve profonder ek taktik</p>
             </div>
-            <span class="text-xs font-mono px-2 py-1 rounded-lg bg-emerald-500/15 text-emerald-400 font-bold">7 MARKS</span>
+            <span class="text-xs font-mono px-2 py-1 rounded-lg bg-emerald-500/15 text-emerald-400 font-bold">7 MARK</span>
           </div>
           <div id="hotspotQuickList" class="space-y-2.5">
-            <!-- Populated dynamically via JS -->
           </div>
         </div>
       </section>
 
       <!-- ============================================================== -->
-      <!-- TAB 2: TACTICAL RODRIGUES CHART & FISH RADAR (Right on Desktop)-->
+      <!-- TAB 2: TACTICAL RODRIGUES CHART & FISH RADAR                   -->
       <!-- ============================================================== -->
       <section id="tab-map" class="tab-panel hidden min-[900px]:block min-[900px]:col-span-7 space-y-4">
         <div class="marine-card rounded-2xl overflow-hidden flex flex-col">
           
-          <!-- Chart Top Control Strip -->
           <div class="p-3 sm:p-4 border-b border-sky-500/15 flex flex-wrap items-center justify-between gap-2">
             <div>
               <div class="flex items-center gap-2">
-                <h2 class="font-bold text-base sm:text-lg">Rodrigues Tactical Bathymetry &amp; Fish Radar</h2>
+                <h2 class="font-bold text-base sm:text-lg">Kat Batimetri ek Radar Lapes Rodrigues</h2>
               </div>
-              <p class="text-xs opacity-70">Tap any beacon or fish icon • Drag to pan • +/- to zoom</p>
+              <p class="text-xs opacity-70">Tap nenport bizon • Taks pas pou sorti dan lagon • Roule pou zoom</p>
             </div>
 
-            <!-- Layer Toggle Pills (Touch-Friendly 44px height) -->
             <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar max-w-full py-0.5">
               <button onclick="toggleMapLayer('hotspots')" id="layerBtn-hotspots" class="min-h-[40px] px-3 rounded-xl text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-400/40 whitespace-nowrap transition">
-                🐟 Fish Marks
+                🐟 Mark Lapes
               </button>
               <button onclick="toggleMapLayer('reef')" id="layerBtn-reef" class="min-h-[40px] px-3 rounded-xl text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-400/40 whitespace-nowrap transition">
-                🪸 Barrier Reef &amp; MPA
+                🪸 Rif &amp; MPA
               </button>
               <button onclick="toggleMapLayer('hazards')" id="layerBtn-hazards" class="min-h-[40px] px-3 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-400/40 whitespace-nowrap transition">
-                ⚠️ Pass Hazards
+                ⚠️ Danze dan Pas
               </button>
               <button onclick="toggleMapLayer('currents')" id="layerBtn-currents" class="min-h-[40px] px-3 rounded-xl text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 whitespace-nowrap transition">
-                🌊 Swell &amp; Drift
+                🌊 Laoul &amp; Kouran
               </button>
             </div>
           </div>
 
-          <!-- Interactive Vector/Canvas Chart Container -->
           <div class="relative w-full h-[54vh] min-h-[380px] max-h-[620px] bg-[#030912] select-none overflow-hidden" id="mapViewport">
             <canvas id="rodriguesMapCanvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
 
-            <!-- Top-Left Compass Rose & Coordinates Overlay -->
             <div class="absolute top-3 left-3 pointer-events-none bg-slate-950/80 backdrop-blur-md border border-sky-500/25 rounded-xl px-3 py-2 text-xs font-mono text-slate-200">
               <div class="text-cyan-400 font-bold" id="mapCursorCoords">19°42.5'S  063°25.6'E</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">WGS84 • DEPTH CONTOURS: 50m / 200m / 1000m</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">WGS84 • LIGNE PROFONDER: 50m / 200m / 1000m</div>
             </div>
 
-            <!-- Right-Side Thumb-Friendly Zoom & Reset Controls -->
             <div class="absolute right-3 top-3 flex flex-col gap-2">
-              <button onclick="zoomMap(1.28)" aria-label="Zoom In" class="w-12 h-12 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-white border border-sky-400/30 shadow-lg flex items-center justify-center text-xl font-bold active:scale-90 transition">+</button>
-              <button onclick="zoomMap(0.78)" aria-label="Zoom Out" class="w-12 h-12 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-white border border-sky-400/30 shadow-lg flex items-center justify-center text-xl font-bold active:scale-90 transition">−</button>
-              <button onclick="resetMapView()" aria-label="Reset Chart View" class="w-12 h-12 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-400 border border-sky-400/30 shadow-lg flex items-center justify-center active:scale-90 transition" title="Center on Rodrigues">
+              <button onclick="zoomMap(1.28)" aria-label="Agrandi Kat" class="w-12 h-12 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-white border border-sky-400/30 shadow-lg flex items-center justify-center text-xl font-bold active:scale-90 transition">+</button>
+              <button onclick="zoomMap(0.78)" aria-label="Dimini Kat" class="w-12 h-12 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-white border border-sky-400/30 shadow-lg flex items-center justify-center text-xl font-bold active:scale-90 transition">−</button>
+              <button onclick="resetMapView()" aria-label="Rekadre Kat" class="w-12 h-12 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-400 border border-sky-400/30 shadow-lg flex items-center justify-center active:scale-90 transition" title="Santre lor Rodrigues">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                   <circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
                 </svg>
               </button>
             </div>
 
-            <!-- Bottom Legend Pill -->
             <div class="absolute bottom-3 left-3 right-3 pointer-events-none flex flex-wrap items-center justify-between gap-2">
               <div class="bg-slate-950/85 backdrop-blur-md border border-sky-500/20 rounded-xl px-3 py-1.5 flex items-center gap-3 text-[11px] font-medium text-slate-200">
-                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>Prime Bite</span>
-                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>Offshore FAD</span>
-                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>Pass Hazard</span>
-                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-purple-400/50 border border-purple-400"></span>MPA Reserve</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>Lapes Top</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>FAD Dehor</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>Pas / Kouran Danze</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-purple-400/50 border border-purple-400"></span>Rezer MPA</span>
               </div>
             </div>
           </div>
 
-          <!-- Selected Hotspot / Zone Inspector Drawer Card -->
           <div id="spotInspectorCard" class="p-4 bg-gradient-to-r from-cyan-950/40 via-slate-900/60 to-slate-900/40 border-t border-cyan-500/30">
             <div class="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <div class="flex items-center gap-2">
-                  <span id="inspBadge" class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">ACTIVE MARK • 92% BITE</span>
+                  <span id="inspBadge" class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">MARK AKTIF • 92% LAPES</span>
                   <span id="inspCoords" class="text-xs font-mono opacity-75">19°40.1'S, 063°28.4'E</span>
                 </div>
-                <h3 id="inspTitle" class="text-lg font-extrabold mt-1">Passe Grand Bassin Drop-Off</h3>
+                <h3 id="inspTitle" class="text-lg font-extrabold mt-1">Passe Grand Bassin (Pase pou Sorti)</h3>
                 <p id="inspDesc" class="text-sm opacity-85 mt-1 leading-relaxed">
-                  Deep channel mouth where nutrient-rich lagoon water flushes into 45m–140m reef wall. Prime ambush zone for trophy Giant Trevally (GT) and Dogtooth Tuna on outgoing tide.
+                  Pas koumansman dehor kot dlo lagon sorti avek fos direktman dan miray 45m-140m. Mele-la pli bon pou sirmonte GT (Giant Trevally) ek Tafi kan lamer pe desann.
                 </p>
               </div>
               <button onclick="copySpotCoordinates()" class="min-h-[44px] px-3.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-400 border border-cyan-400/40 text-xs font-bold flex items-center gap-1.5 active:scale-95 transition shrink-0">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                   <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
                 </svg>
-                Copy GPS
+                Kopie GPS
               </button>
             </div>
             <div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-sky-500/15 text-xs">
               <div>
-                <span class="opacity-65 block">TARGET SPECIES</span>
-                <span id="inspSpecies" class="font-bold text-emerald-400">GT, Dogtooth, Jobfish</span>
+                <span class="opacity-65 block">POWEN LA</span>
+                <span id="inspSpecies" class="font-bold text-emerald-400">GT, Tafi, Kerapas</span>
               </div>
               <div>
-                <span class="opacity-65 block">DEPTH / STRUCTURE</span>
-                <span id="inspDepth" class="font-bold font-mono">18m – 85m Wall</span>
+                <span class="opacity-65 block">PROFOUNDER / STRAB</span>
+                <span id="inspDepth" class="font-bold font-mono">18m – 85m Miray</span>
               </div>
               <div>
-                <span class="opacity-65 block">BEST TACTIC</span>
-                <span id="inspTactic" class="font-bold">Topwater Poppers / Jig</span>
+                <span class="opacity-65 block">BÒN TAKTIK</span>
+                <span id="inspTactic" class="font-bold">Popper / Jigi</span>
               </div>
             </div>
           </div>
@@ -455,61 +438,53 @@
       </section>
 
       <!-- ============================================================== -->
-      <!-- TAB 3: PORT MATHURIN TIDES, SWELL & SOLUNAR                    -->
+      <!-- TAB 3: TIDES, SWELL & SOLUNAR                                  -->
       <!-- ============================================================== -->
       <section id="tab-tides" class="tab-panel hidden min-[900px]:block min-[900px]:col-span-7 space-y-4">
         
-        <!-- Port Mathurin Harmonic Tide Curve -->
         <div class="marine-card rounded-2xl p-4">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
             <div>
-              <h2 class="font-bold text-base sm:text-lg">Port Mathurin Tide Curve (24h MUT)</h2>
-              <p class="text-xs opacity-70">Touch or drag across curve to scrub exact tide height &amp; pass flow</p>
+              <h2 class="font-bold text-base sm:text-lg">Kourb Mare Port Mathurin (24è MUT)</h2>
+              <p class="text-xs opacity-70">Glise ou dwet lor kourb pou get profonder ek kouran dan pas</p>
             </div>
             <div class="text-right font-mono">
-              <div id="scrubTimeDisplay" class="text-sm font-bold text-cyan-400">NOW • 1.12m</div>
-              <div id="scrubFlowDisplay" class="text-[11px] opacity-75">Flood Current +1.4 kt</div>
+              <div id="scrubTimeDisplay" class="text-sm font-bold text-cyan-400">ASTER • 1.12m</div>
+              <div id="scrubFlowDisplay" class="text-[11px] opacity-75">Kouran Monte +1.4 kt</div>
             </div>
           </div>
 
-          <!-- Interactive Canvas Tide Graph -->
           <div class="relative w-full h-52 sm:h-60 rounded-xl bg-[#040c17] border border-sky-500/20 overflow-hidden">
             <canvas id="tideChartCanvas" class="w-full h-full block"></canvas>
           </div>
 
-          <!-- 4 Daily Tide Extremes Grid -->
           <div id="tideExtremesGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-3.5">
-            <!-- Populated by JS -->
           </div>
         </div>
 
-        <!-- 24h Marine Swell & Wind Forecast Strip -->
         <div class="marine-card rounded-2xl p-4">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="font-bold text-base">Hourly Swell &amp; Trade Wind Outlook</h3>
-              <p class="text-xs opacity-70">Scroll horizontally for 24-hour marine window</p>
+              <h3 class="font-bold text-base">Previzyon Laoul ek Vent Alizé (24è)</h3>
+              <p class="text-xs opacity-70">Glise a goch-dwat pou get lezot lere</p>
             </div>
             <span class="text-xs font-mono text-cyan-400 font-semibold">UTC+4</span>
           </div>
           <div id="hourlyForecastStrip" class="flex gap-2.5 overflow-x-auto no-scrollbar pb-1">
-            <!-- Populated by JS -->
           </div>
         </div>
 
-        <!-- Solunar Feeding Windows -->
         <div class="marine-card rounded-2xl p-4">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="font-bold text-base">Solunar Major &amp; Minor Feeding Windows</h3>
-              <p class="text-xs opacity-70">Peak pelagic &amp; reef predatory activity periods</p>
+              <h3 class="font-bold text-base">Peryod Lapes Solinar</h3>
+              <p class="text-xs opacity-70">Lere kot pwason manze pli boukou</p>
             </div>
             <span id="solunarMoonRating" class="px-2.5 py-1 rounded-xl bg-amber-500/15 text-amber-400 border border-amber-500/30 text-xs font-bold">
-              ★★★☆☆ GOOD
+              ★★★☆☆ BÒN
             </span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="solunarWindowsGrid">
-            <!-- Populated by JS -->
           </div>
         </div>
       </section>
@@ -519,60 +494,55 @@
       <!-- ============================================================== -->
       <section id="tab-vhf" class="tab-panel hidden min-[900px]:block min-[900px]:col-span-5 space-y-4">
         
-        <!-- Emergency Mayday & Rodrigues NCG Card -->
         <div class="rounded-2xl p-4 bg-gradient-to-br from-rose-600/25 via-rose-950/30 to-slate-900/40 border-2 border-rose-500/50">
           <div class="flex items-center justify-between gap-2">
             <div>
-              <span class="text-xs font-mono font-extrabold text-rose-400 tracking-wider uppercase">DISTRESS &amp; COAST GUARD</span>
+              <span class="text-xs font-mono font-extrabold text-rose-400 tracking-wider uppercase">SEKOUR &amp; COAST GUARD</span>
               <h2 class="text-lg sm:text-xl font-extrabold mt-0.5">VHF Channel 16 (156.800 MHz)</h2>
             </div>
             <button onclick="playVhfAttentionTone()" class="min-h-[44px] px-3.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-rose-600/30 active:scale-95 transition">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
               </svg>
-              Test Tone
+              Tes Son
             </button>
           </div>
           <p class="text-sm opacity-90 mt-2 leading-relaxed">
-            National Coast Guard (NCG) Rodrigues Operations Room monitors Ch 16 24/7. State vessel name, GPS position, souls on board, and nature of emergency.
+            National Coast Guard (NCG) Rodrigues ekite Ch 16 24er lor 24. Donn nom bato, pozision GPS, konbien dimoun abor, ek sort danze.
           </p>
           <div class="grid grid-cols-2 gap-2.5 mt-3">
-            <button onclick="copyText('NCG Rodrigues Emergency: +230 831 1536 / VHF Ch 16', 'Copied NCG Rodrigues Emergency Contact')" class="min-h-[46px] rounded-xl bg-rose-500/20 border border-rose-400/40 px-3 py-2 text-left active:scale-95 transition">
+            <button onclick="copyText('NCG Rodrigues Emergency: +230 831 1536 / VHF Ch 16', 'Nimero NCG Rodrigues kope')" class="min-h-[46px] rounded-xl bg-rose-500/20 border border-rose-400/40 px-3 py-2 text-left active:scale-95 transition">
               <div class="text-[11px] font-mono text-rose-300">NCG RODRIGUES TEL</div>
               <div class="text-sm font-extrabold font-mono">+230 831 1536</div>
             </button>
-            <button onclick="copyText('MRCC Mauritius Rescue: +230 212 2747 / VHF Ch 16', 'Copied MRCC Rescue Contact')" class="min-h-[46px] rounded-xl bg-rose-500/20 border border-rose-400/40 px-3 py-2 text-left active:scale-95 transition">
-              <div class="text-[11px] font-mono text-rose-300">MRCC RESCUE</div>
+            <button onclick="copyText('MRCC Mauritius Rescue: +230 212 2747 / VHF Ch 16', 'Nimero MRCC kope')" class="min-h-[46px] rounded-xl bg-rose-500/20 border border-rose-400/40 px-3 py-2 text-left active:scale-95 transition">
+              <div class="text-[11px] font-mono text-rose-300">MRCC SEKOUR</div>
               <div class="text-sm font-extrabold font-mono">+230 212 2747</div>
             </button>
           </div>
         </div>
 
-        <!-- Rodrigues Island Marine VHF Frequency Directory -->
         <div class="marine-card rounded-2xl p-4">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="font-bold text-base">Rodrigues Marine VHF Channels</h3>
-              <p class="text-xs opacity-70">Tap any channel card to copy frequency details</p>
+              <h3 class="font-bold text-base">Channel VHF Lamer Rodrigues</h3>
+              <p class="text-xs opacity-70">Tap nenport channel pou kopie frekans</p>
             </div>
-            <span class="text-xs font-mono text-cyan-400">ITU REGION 1</span>
+            <span class="text-xs font-mono text-cyan-400">ITU REJION 1</span>
           </div>
           <div id="vhfChannelList" class="space-y-2.5">
-            <!-- Populated by JS -->
           </div>
         </div>
 
-        <!-- Interactive Pre-Departure Boat Safety Checklist -->
         <div class="marine-card rounded-2xl p-4">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="font-bold text-base">Lagoon &amp; Pass Departure Check</h3>
-              <p class="text-xs opacity-70">Tap items to verify before crossing outer reef</p>
+              <h3 class="font-bold text-base">Verifikasion Anvan Sorti Lagon</h3>
+              <p class="text-xs opacity-70">Koke bann laktivite anvan al dehor rif</p>
             </div>
-            <span id="checklistProgress" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-400">0/5 READY</span>
+            <span id="checklistProgress" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-400">0/5 PRÉ</span>
           </div>
           <div id="safetyChecklist" class="space-y-2">
-            <!-- Populated by JS -->
           </div>
         </div>
       </section>
@@ -580,78 +550,75 @@
     </div>
   </main>
 
-  <!-- FIXED BOTTOM THUMB NAVIGATION BAR (Visible on Mobile & Tablet < 900px) -->
-  <nav aria-label="Primary Mobile Navigation" class="min-[900px]:hidden fixed bottom-0 inset-x-0 z-40 bg-[#071222]/95 light-glare:bg-white/95 backdrop-blur-lg border-t border-sky-500/25 mobile-nav-bar">
+  <!-- FIXED BOTTOM THUMB NAVIGATION BAR -->
+  <nav aria-label="Navigasion Mobil" class="min-[900px]:hidden fixed bottom-0 inset-x-0 z-40 bg-[#071222]/95 light-glare:bg-white/95 backdrop-blur-lg border-t border-sky-500/25 mobile-nav-bar">
     <div class="grid grid-cols-4 gap-1 px-2 pt-1.5 max-w-lg mx-auto">
       
       <button onclick="switchMobileTab('overview')" id="navBtn-overview" class="nav-tab-btn min-h-[54px] rounded-xl flex flex-col items-center justify-center gap-1 text-cyan-400 bg-cyan-500/15 font-bold transition">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
         </svg>
-        <span class="text-[11px] leading-none">Overview</span>
+        <span class="text-[11px] leading-none">Apèsi</span>
       </button>
 
       <button onclick="switchMobileTab('map')" id="navBtn-map" class="nav-tab-btn min-h-[54px] rounded-xl flex flex-col items-center justify-center gap-1 opacity-70 hover:opacity-100 font-semibold transition">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
         </svg>
-        <span class="text-[11px] leading-none">Fish Radar</span>
+        <span class="text-[11px] leading-none">Radar Lapes</span>
       </button>
 
       <button onclick="switchMobileTab('tides')" id="navBtn-tides" class="nav-tab-btn min-h-[54px] rounded-xl flex flex-col items-center justify-center gap-1 opacity-70 hover:opacity-100 font-semibold transition">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 18c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 6c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/>
         </svg>
-        <span class="text-[11px] leading-none">Tides &amp; Swell</span>
+        <span class="text-[11px] leading-none">Mare &amp; Laoul</span>
       </button>
 
       <button onclick="switchMobileTab('vhf')" id="navBtn-vhf" class="nav-tab-btn min-h-[54px] rounded-xl flex flex-col items-center justify-center gap-1 opacity-70 hover:opacity-100 font-semibold transition">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
-        <span class="text-[11px] leading-none">VHF &amp; Safety</span>
+        <span class="text-[11px] leading-none">VHF &amp; Sekour</span>
       </button>
 
     </div>
   </nav>
 
   <script>
-    // =========================================================================
-    // 1. RODRIGUES ISLAND MARINE SECTORS, HOTSPOTS & VHF DATA
-    // =========================================================================
     const SECTORS = {
       port_mathurin: {
-        name: "Port Mathurin & North Pass",
+        name: "Port Mathurin & Pass Nò (Pas pou Sorti Dan Lagon)",
         lat: -19.675,
         lon: 63.422,
         lagoonFactor: 0.32,
         biteScore: 84,
-        species: "GT, Yellowfin, Barracuda",
-        passRisk: "MODERATE (1.8m)",
+        species: "GT, Tafi, Barracuda",
+        passRisk: "MODERE (1.8m)",
         focusZoom: 1.45,
         focusLon: 63.422,
         focusLat: -19.675
       },
       grand_bassin: {
-        name: "Passe Grand Bassin & Rivière Banane",
+        name: "Passe Grand Bassin & Rivière Banane (Pas pou Sorti Dan Lagon)",
         lat: -19.668,
         lon: 63.472,
         lagoonFactor: 0.35,
         biteScore: 92,
-        species: "Trophy GT, Dogtooth Tuna",
-        passRisk: "HIGH ON EBB (2.1m)",
+        species: "GT Gran Vites, Dogtooth",
+        passRisk: "DANZE KAN MARE DESANN (2.1m)",
         focusZoom: 1.55,
         focusLon: 63.472,
         focusLat: -19.672
       },
       mourouk: {
-        name: "Mourouk & SE Lagoon Flats",
+        name: "Mourouk & Fon Lagon Sid-Es",
         lat: -19.765,
         lon: 63.465,
         lagoonFactor: 0.28,
         biteScore: 81,
-        species: "Bonefish, Bluefin Trevally",
-        passRisk: "CHOPPY (SE TRADES)",
+        species: "Bonefish, Trevally Ble",
+        passRisk: "HOULE (ALIZÉ SID-ES)",
         focusZoom: 1.5,
         focusLon: 63.460,
         focusLat: -19.760
@@ -662,20 +629,20 @@
         lon: 63.315,
         lagoonFactor: 0.25,
         biteScore: 79,
-        species: "Emperor, Snapper, Queenfish",
-        passRisk: "SHELTERED LEE",
+        species: "Kapitenn, Snapper, Queenfish",
+        passRisk: "PROTEZE (LEE)",
         focusZoom: 1.45,
         focusLon: 63.330,
         focusLat: -19.710
       },
       hawkins_bank: {
-        name: "Hawkins Bank Offshore FADs",
+        name: "Hawkins Bank Large Lamer FADs",
         lat: -19.480,
         lon: 63.300,
         lagoonFactor: 1.0,
         biteScore: 95,
-        species: "Blue Marlin, YFT, Wahoo",
-        passRisk: "OPEN OCEAN SWELL",
+        species: "Blue Marlin, Tafi, Wahoo",
+        passRisk: "LAOUL LARGE",
         focusZoom: 0.95,
         focusLon: 63.350,
         focusLat: -19.580
@@ -685,117 +652,114 @@
     const FISH_HOTSPOTS = [
       {
         id: "hs-grand-bassin",
-        title: "Passe Grand Bassin Drop-Off",
+        title: "Passe Grand Bassin (Pas pou Sorti)",
         coordsText: "19°40.1'S, 063°28.4'E",
         lat: -19.668,
         lon: 63.473,
         bitePct: 94,
         type: "prime",
-        species: "GT, Dogtooth, Green Jobfish",
-        depth: "18m – 85m Wall",
-        tactic: "Heavy Topwater Poppers / Speed Jig",
-        desc: "Deep channel mouth where nutrient-rich lagoon water flushes into a vertical 85m reef wall. Prime ambush zone for trophy Giant Trevally on outgoing tide."
+        species: "GT, Tafi, Green Jobfish",
+        depth: "18m – 85m Miray",
+        tactic: "Popper Louv / Speed Jig",
+        desc: "Pas kote dlo lagon sorti avek fos direk dan miray 85m. Bon plas pou gagn GT kan lamer pe desann."
       },
       {
         id: "hs-north-wall",
-        title: "Northern Drop-Off Pinnacle",
+        title: "Miray Nò Drop-Off",
         coordsText: "19°38.4'S, 063°24.8'E",
         lat: -19.640,
         lon: 63.413,
         bitePct: 91,
         type: "prime",
-        species: "Dogtooth Tuna, Wahoo, Sailfish",
-        depth: "45m – 210m Shelf",
-        tactic: "Deep Knife Jigs / Live Bait Slow Troll",
-        desc: "Steep bathymetric shelf 2.5 NM north of Port Mathurin channel entrance. Strong current convergence holds dense baitfish schools."
+        species: "Dogtooth, Wahoo, Sailfish",
+        depth: "45m – 210m",
+        tactic: "Deep Jig / Live Bait",
+        desc: "Pointe bathimetrik 2.5 NM no Port Mathurin. Kouran for rasanble pwason."
       },
       {
         id: "hs-hawkins-fad",
-        title: "Hawkins Bank South FAD #2",
+        title: "Hawkins Bank FAD #2",
         coordsText: "19°31.2'S, 063°19.5'E",
         lat: -19.520,
         lon: 63.325,
         bitePct: 96,
         type: "fad",
-        species: "Yellowfin Tuna, Blue Marlin, Dorado",
-        depth: "65m Bank / 1200m Edge",
-        tactic: "Trolling Skirts / Live Skipjack",
-        desc: "Offshore seamount edge NW of Rodrigues. Consistent pelagic highway for 30–60kg Yellowfin Tuna and Blue Marlin."
+        species: "Tafi Jaun (YFT), Blue Marlin, Dorado",
+        depth: "65m / 1200m",
+        tactic: "Trolling / Skipjack",
+        desc: "Bann montay dehor nwes Rodrigues. Gran lari pou Tafi 30-60kg."
       },
       {
         id: "hs-st-francois",
-        title: "Passe St. François Reef Cut",
+        title: "Passe St. François (Pas pou Sorti)",
         coordsText: "19°42.6'S, 063°30.5'E",
         lat: -19.710,
         lon: 63.508,
         bitePct: 87,
         type: "prime",
-        species: "Wahoo, Giant Trevally, Bohar Snapper",
-        depth: "14m – 60m Cut",
-        tactic: "Subsurface Stickbaits / Trolling",
-        desc: "Easternmost reef break catching clean Indian Ocean swell. High current velocity; exercise caution on peak ebb tide."
+        species: "Wahoo, GT, Bohar",
+        depth: "14m – 60m",
+        tactic: "Stickbait / Trolling",
+        desc: "Pas lès ki pran laoul lamer Indike direk. Kouran for; pran prekosyon kan lamer pe desann."
       },
       {
         id: "hs-mourouk-flats",
-        title: "Mourouk & Île Hermitage Flats",
+        title: "Mourouk & Fon Sid",
         coordsText: "19°46.1'S, 063°27.2'E",
         lat: -19.768,
         lon: 63.453,
         bitePct: 83,
         type: "prime",
-        species: "Bonefish, Bluefin Trevally, Permit",
-        depth: "0.8m – 3.5m Sand/Turtle Grass",
-        tactic: "Light Spin / Crab & Shrimp Flies",
-        desc: "Expansive southern sand flats inside the barrier reef. Best fished on the incoming flood tide pushing onto shallow coral edges."
+        species: "Bonefish, Trevally, Permit",
+        depth: "0.8m – 3.5m",
+        tactic: "Fly Fishing / Light Spin",
+        desc: "Gran fon dipou lagon andan rif. Pli bon kan lamer pe monte."
       },
       {
         id: "hs-cocos-channel",
-        title: "Île aux Cocos Western Channel",
+        title: "Pas Lwes Île aux Cocos",
         coordsText: "19°42.8'S, 063°18.1'E",
         lat: -19.713,
         lon: 63.301,
         bitePct: 80,
         type: "prime",
-        species: "Spangled Emperor, Queenfish, Trevally",
-        depth: "4m – 16m Lagoon Pass",
-        tactic: "Soft Plastics / Light Jigging",
-        desc: "Leeward western lagoon channel near Île aux Cocos bird sanctuary. Protected from SE trade chop."
+        species: "Kapitenn, Queenfish, Trevally",
+        depth: "4m – 16m",
+        tactic: "Soft Plastics / Light Jig",
+        desc: "Pas lewe pre rezerv zwazo Île aux Cocos. Proteze kont vent alizé."
       },
       {
         id: "hs-east-fad",
-        title: "Pointe Coton Offshore FAD #4",
+        title: "Pointe Coton FAD #4",
         coordsText: "19°43.5'S, 063°34.8'E",
         lat: -19.725,
         lon: 63.580,
         bitePct: 89,
         type: "fad",
-        species: "Dorado (Mahi-Mahi), Wahoo, YFT",
-        depth: "480m Bluewater",
-        tactic: "High-Speed Skirt Trolling",
-        desc: "Anchored 4.5 NM east of Pointe Coton. Productive early morning trolling run when SE winds are under 18 knots."
+        species: "Dorado, Wahoo, YFT",
+        depth: "480m",
+        tactic: "High-Speed Trolling",
+        desc: "4.5 NM lès Pointe Coton. Bon pou fer trolling gran bonmat."
       }
     ];
 
     const VHF_CHANNELS = [
-      { ch: "CH 16", freq: "156.800 MHz", name: "International Distress, Safety & Calling", note: "Mandatory continuous watch • NCG Rodrigues", priority: "emergency" },
-      { ch: "CH 67", freq: "156.375 MHz", name: "Small Craft Safety & Weather Advisories", note: "Mauritius / Rodrigues Marine Weather Broadcasts", priority: "primary" },
-      { ch: "CH 12", freq: "156.600 MHz", name: "Port Mathurin Harbour Control", note: "Commercial & cargo vessel movement in North Channel", priority: "primary" },
-      { ch: "CH 08", freq: "156.400 MHz", name: "Inter-Ship Fishing & Charter Fleet", note: "Rodrigues sportfishing & lagoon skippers working channel", priority: "normal" },
-      { ch: "CH 72", freq: "156.625 MHz", name: "Inter-Ship Leisure & Dive Boats", note: "Lagoon dive operators & islet transfers", priority: "normal" },
-      { ch: "CH 73", freq: "156.675 MHz", name: "MPA Rangers & Lagoon Patrol", note: "Rivière Banane & South East Marine Protected Area", priority: "normal" }
+      { ch: "CH 16", freq: "156.800 MHz", name: "Sekour International, Alenn & Voke", note: "Kontini • NCG Rodrigues", priority: "emergency" },
+      { ch: "CH 67", freq: "156.375 MHz", name: "Sekour Bato Letan & Météo Lamer", note: "Bulletin Meteyo Moris / Rodrigues", priority: "primary" },
+      { ch: "CH 12", freq: "156.600 MHz", name: "Port Mathurin Harbour Control", note: "Mouvman bato dan Pas No", priority: "primary" },
+      { ch: "CH 08", freq: "156.400 MHz", name: "Lapes & Bato Karter", note: "Skipers lagon ek larestan", priority: "normal" },
+      { ch: "CH 72", freq: "156.625 MHz", name: "Bato Plezir & Plonjon", note: "Operater plonjon ek transport zwazo", priority: "normal" },
+      { ch: "CH 73", freq: "156.675 MHz", name: "MPA Rangers & Patrouy Lagon", note: "Rivière Banane ek Rezer Sid-Es", priority: "normal" }
     ];
 
     const SAFETY_ITEMS = [
-      { id: "chk-vhf", label: "VHF Handheld & Fixed Radio tested on Ch 16 / Ch 67" },
-      { id: "chk-tide", label: "Verified Pass Tide Window (avoid peak spring ebb breakers)" },
-      { id: "chk-gps", label: "Offline GPS waypoints & backup battery pack charged" },
-      { id: "chk-fuel", label: "1/3 Out, 1/3 Back, 1/3 Reserve fuel rule confirmed" },
-      { id: "chk-pfds", label: "Life jackets, flares, anchor & 100m warp inspected" }
+      { id: "chk-vhf", label: "VHF Portatif & Fixed teste lor Ch 16 / Ch 67" },
+      { id: "chk-tide", label: "Verify Lere Mare dan Pas (evite kouran desann for)" },
+      { id: "chk-gps", label: "Waypoints GPS offline & batri sanz charge" },
+      { id: "chk-fuel", label: "Regl 1/3 sorti, 1/3 retour, 1/3 rezerv gaz" },
+      { id: "chk-pfds", label: "Zile-sovte, flar, lank ek 100m kord in spekte" }
     ];
 
-    // =========================================================================
-    // 2. APPLICATION STATE
-    // =========================================================================
     let state = {
       activeTab: 'overview',
       sectorKey: 'port_mathurin',
@@ -808,7 +772,6 @@
         hazards: true,
         currents: true
       },
-      // Marine Telemetry values (updated from Open-Meteo or resilient fallback)
       marine: {
         waveHeight: 1.8,
         wavePeriod: 11,
@@ -820,7 +783,6 @@
         pressure: 1015,
         hourly: []
       },
-      // Map Viewport Pan & Zoom
       map: {
         zoom: 1.15,
         centerLon: 63.415,
@@ -832,16 +794,11 @@
         dragStartLat: -19.705,
         hitTargets: []
       },
-      // Tide Scrubbing
       tideScrubHour: null,
       checklist: {}
     };
 
-    // =========================================================================
-    // 3. CLOCK, THEME & NAVIGATION
-    // =========================================================================
     function updateMutClock() {
-      // Mauritius / Rodrigues Standard Time is strictly UTC+4
       const now = new Date();
       const utcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
       const mutDate = new Date(utcMs + (4 * 3600000));
@@ -861,15 +818,15 @@
       if (state.glareMode) {
         htmlEl.classList.remove('dark');
         htmlEl.classList.add('light-glare');
-        if (label) label.textContent = 'Bridge Dark';
+        if (label) label.textContent = 'Mode Nwar';
         sunIcon.innerHTML = `<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>`;
-        showToast('Daylight High-Contrast Mode enabled for bright sun');
+        showToast('Mode Gran Solé aktive');
       } else {
         htmlEl.classList.remove('light-glare');
         htmlEl.classList.add('dark');
-        if (label) label.textContent = 'Sunlight';
+        if (label) label.textContent = 'Solé';
         sunIcon.innerHTML = `<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>`;
-        showToast('Bridge Dark Night-Vision Mode enabled');
+        showToast('Mode Nwar aktive');
       }
       drawTideChart();
     }
@@ -899,7 +856,6 @@
         }
       });
 
-      // Redraw canvases immediately when their tab becomes visible so dimensions are 100% accurate
       if (tabId === 'map') {
         requestAnimationFrame(() => {
           resizeMapCanvas();
@@ -937,31 +893,28 @@
       textarea.select();
       try {
         document.execCommand('copy');
-        showToast(toastMsg || 'Copied to clipboard');
+        showToast(toastMsg || 'Kope dan clipboard');
       } catch (e) {
-        showToast('Copy unavailable on this browser');
+        showToast('Kopi pa disponib lor sa browser la');
       }
       document.body.removeChild(textarea);
     }
 
-    // =========================================================================
-    // 4. LIVE OPEN-METEO MARINE & WEATHER FETCH (WITH OFFLINE FALLBACK)
-    // =========================================================================
     function degToCompass(deg) {
       const dirs = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
       return dirs[Math.round(deg / 22.5) % 16];
     }
 
     function windToBeaufort(kts) {
-      if (kts < 1) return "Beaufort 0 • Calm";
-      if (kts <= 3) return "Beaufort 1 • Light Air";
-      if (kts <= 6) return "Beaufort 2 • Light Breeze";
-      if (kts <= 10) return "Beaufort 3 • Gentle Breeze";
-      if (kts <= 16) return "Beaufort 4 • Moderate Breeze";
-      if (kts <= 21) return "Beaufort 5 • Fresh Breeze";
-      if (kts <= 27) return "Beaufort 6 • Strong Breeze";
-      if (kts <= 33) return "Beaufort 7 • Near Gale";
-      return "Beaufort 8+ • Gale Warning";
+      if (kts < 1) return "Beaufort 0 • Kalm";
+      if (kts <= 3) return "Beaufort 1 • Ti Vant";
+      if (kts <= 6) return "Beaufort 2 • Briz Dou";
+      if (kts <= 10) return "Beaufort 3 • Briz Fasil";
+      if (kts <= 16) return "Beaufort 4 • Briz Modere";
+      if (kts <= 21) return "Beaufort 5 • Briz Fre";
+      if (kts <= 27) return "Beaufort 6 • Bon Vant";
+      if (kts <= 33) return "Beaufort 7 • Preske Gal";
+      return "Beaufort 8+ • Alenn Gal";
     }
 
     function generateFallbackHourly() {
@@ -1018,7 +971,6 @@
         state.marine.windDir = Math.round(wc.wind_direction_10m ?? 112);
         state.marine.pressure = Math.round(wc.surface_pressure ?? 1015);
 
-        // Build next 18 hours strip
         const nowHourIdx = new Date().getHours();
         const hourlyList = [];
         for (let i = 0; i < 18; i++) {
@@ -1032,7 +984,6 @@
         state.marine.hourly = hourlyList.length ? hourlyList : generateFallbackHourly();
         state.isLiveApi = true;
       } catch (err) {
-        // Resilient marine fallback when offshore with weak signal
         state.isLiveApi = false;
         if (!state.marine.hourly.length) {
           state.marine.hourly = generateFallbackHourly();
@@ -1045,7 +996,7 @@
 
     function refreshTelemetry() {
       fetchLiveRodriguesTelemetry();
-      showToast('Syncing Rodrigues Island marine telemetry...');
+      showToast('Pe sinkroniz done lamer Rodrigues...');
     }
 
     function changeSector(newSectorKey) {
@@ -1058,34 +1009,29 @@
       }
       fetchLiveRodriguesTelemetry();
       drawRodriguesChart();
-      showToast(`Sector: ${sector.name}`);
+      showToast(`Sekter: ${sector.name}`);
     }
 
-    // =========================================================================
-    // 5. UPDATE UI METRICS, ALERTS, HOURLY & SOLUNAR
-    // =========================================================================
     function updateDashboardUI() {
       const sector = SECTORS[state.sectorKey];
       const m = state.marine;
 
-      // Live / Cached Badge
       const badge = document.getElementById('dataSourceBadge');
       if (badge) {
         if (state.isLiveApi) {
           badge.className = 'inline-flex items-center gap-1 text-emerald-400 font-semibold';
-          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>LIVE API`;
+          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>API AN DIRK`;
         } else {
           badge.className = 'inline-flex items-center gap-1 text-amber-400 font-semibold';
-          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>CACHED OFFSHORE`;
+          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>OKAPI OFFLINE`;
         }
       }
 
-      // Compute Sea State Severity (SAFE / CAUTION / ROUGH)
-      let severity = 'SAFE';
+      let severity = 'SEKIR';
       if (m.waveHeight >= 2.5 || m.windSpeed >= 22) {
-        severity = 'ROUGH';
+        severity = 'FOR';
       } else if (m.waveHeight >= 1.6 || m.windSpeed >= 15) {
-        severity = 'CAUTION';
+        severity = 'ATANSION';
       }
 
       const statusPill = document.getElementById('seaStatusPill');
@@ -1098,48 +1044,47 @@
 
       statusText.textContent = severity;
 
-      if (severity === 'ROUGH') {
+      if (severity === 'FOR') {
         statusPill.className = 'min-h-[44px] px-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide flex items-center gap-1.5 bg-rose-500/20 text-rose-400 border border-rose-500/50 active:scale-95 transition';
         alertCard.className = 'rounded-2xl p-4 border-2 border-rose-500/60 bg-gradient-to-br from-rose-500/20 via-rose-950/25 to-transparent shadow-lg';
         alertIconBox.className = 'w-10 h-10 rounded-xl bg-rose-500/25 text-rose-400 flex items-center justify-center shrink-0';
         alertSeverityBadge.className = 'text-[11px] font-mono font-bold uppercase tracking-wider text-rose-400';
-        alertSeverityBadge.textContent = 'SMALL CRAFT & PASS WARNING';
-        alertHeadline.textContent = `Heavy Swell (${m.waveHeight}m) & Strong ${degToCompass(m.windDir)} Winds`;
-        alertDetails.textContent = `Dangerous breaking surf across Passe Grand Bassin, Passe St. François, and North Pass. Avoid outer reef exits on outgoing ebb tide; remain inside sheltered lagoon.`;
-      } else if (severity === 'CAUTION') {
+        alertSeverityBadge.textContent = 'AVERTISMAN PAS & BATO';
+        alertHeadline.textContent = `Gro Laoul (${m.waveHeight}m) ek Vant For ${degToCompass(m.windDir)}`;
+        alertDetails.textContent = `Pas pou sorti dan lagon dan Passe Grand Bassin, Passe St. François, ek Pass No danze pou desann. Pa al dehor rif kan lamer pe desann; reste an dan lagon proteze.`;
+      } else if (severity === 'ATANSION') {
         statusPill.className = 'min-h-[44px] px-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide flex items-center gap-1.5 bg-amber-500/15 text-amber-400 border border-amber-500/40 active:scale-95 transition';
         alertCard.className = 'rounded-2xl p-4 border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/15 via-orange-950/20 to-transparent shadow-lg';
         alertIconBox.className = 'w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0';
         alertSeverityBadge.className = 'text-[11px] font-mono font-bold uppercase tracking-wider text-amber-400';
-        alertSeverityBadge.textContent = 'PASS & REEF ADVISORY';
-        alertHeadline.textContent = `Moderate ${degToCompass(m.windDir)} Trade Swell in Reef Passes`;
-        alertDetails.textContent = `Outgoing ebb tide opposing ${m.windSpeed} kt ${degToCompass(m.windDir)} winds creates steep standing waves in Passe Grand Bassin & St. François. Watch shallow coral bommies at low water.`;
+        alertSeverityBadge.textContent = 'PAS & RIF ADVIZ';
+        alertHeadline.textContent = `Laoul Alizé ${degToCompass(m.windDir)} Modere dan Bann Pas`;
+        alertDetails.textContent = `Pass pou sorti dan lagon (Passe Grand Bassin, Passe St. François): kouran d'ebout (ebb tide) ki pe kontre vent ${m.windSpeed} kt ${degToCompass(m.windDir)} kreye gro laf-disan. Gars pator koral ba water.`;
       } else {
         statusPill.className = 'min-h-[44px] px-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide flex items-center gap-1.5 bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 active:scale-95 transition';
         alertCard.className = 'rounded-2xl p-4 border-2 border-emerald-500/45 bg-gradient-to-br from-emerald-500/15 via-teal-950/20 to-transparent shadow-lg';
         alertIconBox.className = 'w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0';
         alertSeverityBadge.className = 'text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-400';
-        alertSeverityBadge.textContent = 'FAVORABLE MARINE WINDOW';
-        alertHeadline.textContent = `Clean Reef Passes & Calm Lagoon Conditions`;
-        alertDetails.textContent = `Light-to-moderate ${m.windSpeed} kt breeze with ${m.waveHeight}m outer swell. Good visibility over coral heads; ideal transit to Hawkins Bank and outer FADs.`;
+        alertSeverityBadge.textContent = 'BON TANSION LAMER';
+        alertHeadline.textContent = `Pas Kalm ek Lagon Net`;
+        alertDetails.textContent = `Briz modere ${m.windSpeed} kt avek laoul dehor ${m.waveHeight}m. Vizibilite bon lor koral; bon pou sorti al Hawkins Bank ek FAD dehor.`;
       }
 
       const lagoonWave = Math.max(0.2, +(m.waveHeight * sector.lagoonFactor).toFixed(1));
-      document.getElementById('alertPassRisk').textContent = `OUTER PASS: ${m.waveHeight}m (${m.wavePeriod}s)`;
-      document.getElementById('alertLagoonChop').textContent = `LAGOON CHOP: ~${lagoonWave}m`;
+      document.getElementById('alertPassRisk').textContent = `PAS DEHOR: ${m.waveHeight}m (${m.wavePeriod}s)`;
+      document.getElementById('alertLagoonChop').textContent = `LAGON: ~${lagoonWave}m`;
 
-      // Update 2x2 Summary Cards
       document.getElementById('metricWaveHeight').textContent = m.waveHeight.toFixed(1);
       document.getElementById('metricSwellPeriod').textContent = `${m.wavePeriod}s • ${degToCompass(m.waveDir)} (${m.waveDir}°)`;
-      document.getElementById('metricLagoonWave').textContent = `Lagoon inside reef: ~${lagoonWave}m`;
+      document.getElementById('metricLagoonWave').textContent = `Lagon andan rif: ~${lagoonWave}m`;
 
       document.getElementById('metricWindSpeed').textContent = m.windSpeed;
-      document.getElementById('metricWindDir').textContent = `${degToCompass(m.windDir)} ${m.windDir}° • Gusts ${m.windGusts}kt`;
+      document.getElementById('metricWindDir').textContent = `${degToCompass(m.windDir)} ${m.windDir}° • Rafal ${m.windGusts}kt`;
       document.getElementById('metricBeaufort').textContent = windToBeaufort(m.windSpeed);
 
       document.getElementById('metricBiteScore').textContent = sector.biteScore;
       document.getElementById('metricTargetSpecies').textContent = sector.species;
-      document.getElementById('metricSST').textContent = `SST ${m.sst}°C • ${m.pressure} hPa`;
+      document.getElementById('metricSST').textContent = `Dlo ${m.sst}°C • ${m.pressure} hPa`;
 
       document.getElementById('stripSST').textContent = `${m.sst}°C`;
       document.getElementById('stripPressure').textContent = `${m.pressure} hPa`;
@@ -1155,7 +1100,7 @@
         const accentClass = isRough ? 'text-amber-400' : 'text-cyan-400';
         return `
           <div class="min-w-[82px] rounded-xl p-2.5 bg-slate-900/50 light-glare:bg-slate-100 border border-sky-500/15 flex flex-col items-center text-center shrink-0">
-            <span class="text-xs font-mono font-bold opacity-80">${i === 0 ? 'NOW' : h.timeLabel}</span>
+            <span class="text-xs font-mono font-bold opacity-80">${i === 0 ? 'ASTER' : h.timeLabel}</span>
             <span class="text-base font-extrabold font-mono tabular-nums mt-1.5 ${accentClass}">${h.waveHeight}m</span>
             <span class="text-[11px] font-mono opacity-75 mt-1">${h.windKnots} kt</span>
             <span class="text-[10px] font-mono opacity-60">${degToCompass(h.windDir)}</span>
@@ -1164,12 +1109,7 @@
       }).join('');
     }
 
-    // =========================================================================
-    // 6. HARMONIC TIDES FOR PORT MATHURIN (INTERACTIVE SCRUBBABLE CANVAS)
-    // =========================================================================
-    // Port Mathurin semidiurnal harmonic approximation anchored to current day
     function getPortMathurinTideHeight(hourFloat) {
-      // Semidiurnal M2 + S2 constituents typical for Rodrigues (range ~0.35m to 1.52m)
       const now = new Date();
       const dayPhase = (now.getDate() % 14) * 0.44;
       const tide = 0.92
@@ -1190,7 +1130,7 @@
           const hh = String(Math.floor(h) % 24).padStart(2, '0');
           const mm = String(Math.round((h % 1) * 60) % 60).padStart(2, '0');
           extremes.push({
-            type: isHigh ? 'HIGH' : 'LOW',
+            type: isHigh ? 'OBA (HIGH)' : 'BAS (LOW)',
             hourFloat: h,
             timeStr: `${hh}:${mm}`,
             height: curr.toFixed(2)
@@ -1207,7 +1147,6 @@
       const now = new Date();
       const nowHour = now.getHours() + now.getMinutes() / 60;
 
-      // Update Overview Next Tide Card
       const nextTide = extremes.find(e => e.hourFloat > nowHour) || extremes[0];
       const currentH = getPortMathurinTideHeight(nowHour);
       const nextH = getPortMathurinTideHeight(nowHour + 0.25);
@@ -1217,42 +1156,40 @@
         document.getElementById('metricNextTideTime').textContent = nextTide.timeStr;
         const delta = (Number(nextTide.height) - currentH).toFixed(2);
         const sign = delta >= 0 ? '+' : '';
-        document.getElementById('metricNextTideHeight').textContent = `${nextTide.type} • ${nextTide.height}m (${sign}${delta}m)`;
+        document.getElementById('metricNextTideHeight').textContent = `${nextTide.type.split(' ')[0]} • ${nextTide.height}m (${sign}${delta}m)`;
         const badge = document.getElementById('metricTideStateBadge');
-        badge.textContent = isRising ? 'RISING' : 'EBBING';
+        badge.textContent = isRising ? 'MONTE' : 'DESANN';
         badge.className = isRising
           ? 'px-1.5 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-400 font-bold'
           : 'px-1.5 py-0.5 rounded text-[10px] font-mono bg-amber-500/20 text-amber-400 font-bold';
       }
 
-      // Render 4 Tide Extreme Cards
       const grid = document.getElementById('tideExtremesGrid');
       if (grid) {
         grid.innerHTML = extremes.map(ex => {
-          const isHigh = ex.type === 'HIGH';
+          const isHigh = ex.type.includes('OBA');
           return `
             <div class="rounded-xl p-3 bg-slate-900/50 light-glare:bg-slate-100 border border-sky-500/15 flex items-center justify-between">
               <div>
-                <span class="text-[11px] font-mono font-bold ${isHigh ? 'text-cyan-400' : 'text-amber-400'}">${ex.type} TIDE</span>
+                <span class="text-[11px] font-mono font-bold ${isHigh ? 'text-cyan-400' : 'text-amber-400'}">${ex.type}</span>
                 <div class="text-lg font-extrabold font-mono tabular-nums">${ex.timeStr}</div>
               </div>
               <div class="text-right">
                 <div class="text-base font-bold font-mono tabular-nums">${ex.height}m</div>
-                <div class="text-[10px] opacity-65">Chart Datum</div>
+                <div class="text-[10px] opacity-65">Datum Kat</div>
               </div>
             </div>
           `;
         }).join('');
       }
 
-      // Render Solunar Feeding Windows
       const solunarGrid = document.getElementById('solunarWindowsGrid');
       if (solunarGrid) {
         const windows = [
-          { kind: "MAJOR FEEDING (OVERHEAD)", time: "06:15 – 08:25 MUT", rating: "94% PEAK", note: "Coincides with dawn pass current push" },
-          { kind: "MAJOR FEEDING (UNDERFOOT)", time: "18:40 – 20:50 MUT", rating: "91% PEAK", note: "Prime dusk reef edge & FAD predator activity" },
-          { kind: "MINOR WINDOW #1", time: "12:10 – 13:15 MUT", rating: "74% ACTIVE", note: "Midday pelagic surface action" },
-          { kind: "MINOR WINDOW #2", time: "00:30 – 01:35 MUT", rating: "71% ACTIVE", note: "Nocturnal reef snapper & trevally bite" }
+          { kind: "MAJOR (AN LER)", time: "06:15 – 08:25 MUT", rating: "94% TOP", note: "Kordin avek kouran pas gran bonmat" },
+          { kind: "MAJOR (ANBA)", time: "18:40 – 20:50 MUT", rating: "91% TOP", note: "Peryod soire pou pwason dehor rif" },
+          { kind: "MINOR #1", time: "12:10 – 13:15 MUT", rating: "74% AKTIF", note: "Aktivite sifas midi" },
+          { kind: "MINOR #2", time: "00:30 – 01:35 MUT", rating: "71% AKTIF", note: "Lapes lannwit an lagon ek rif" }
         ];
         solunarGrid.innerHTML = windows.map(w => `
           <div class="rounded-xl p-3 bg-slate-900/50 light-glare:bg-slate-100 border border-sky-500/15">
@@ -1300,7 +1237,6 @@
       const plotW = w - padLeft - padRight;
       const plotH = h - padTop - padBottom;
 
-      // Grid lines (0.0m, 0.5m, 1.0m, 1.5m)
       ctx.strokeStyle = 'rgba(56, 189, 248, 0.14)';
       ctx.lineWidth = 1;
       ctx.fillStyle = '#94a3b8';
@@ -1315,13 +1251,11 @@
         ctx.fillText(`${val.toFixed(1)}m`, 4, y + 3);
       });
 
-      // X-axis hour ticks
       [0, 6, 12, 18, 24].forEach(hr => {
         const x = padLeft + (hr / 24) * plotW;
         ctx.fillText(`${String(hr).padStart(2, '0')}h`, x - 10, h - 8);
       });
 
-      // Tide Curve Path
       const grad = ctx.createLinearGradient(0, padTop, 0, padTop + plotH);
       grad.addColorStop(0, 'rgba(0, 229, 255, 0.35)');
       grad.addColorStop(1, 'rgba(0, 229, 255, 0.02)');
@@ -1339,14 +1273,12 @@
       ctx.lineWidth = 3;
       ctx.stroke();
 
-      // Fill under curve
       ctx.lineTo(padLeft + plotW, padTop + plotH);
       ctx.lineTo(padLeft, padTop + plotH);
       ctx.closePath();
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // Active Scrub / Current Time Marker
       const now = new Date();
       const nowHr = now.getHours() + now.getMinutes() / 60;
       const activeHr = state.tideScrubHour !== null ? state.tideScrubHour : nowHr;
@@ -1357,7 +1289,6 @@
       const markerX = padLeft + (activeHr / 24) * plotW;
       const markerY = padTop + plotH - ((activeVal - 0.1) / 1.55) * plotH;
 
-      // Vertical scrub line
       ctx.beginPath();
       ctx.moveTo(markerX, padTop);
       ctx.lineTo(markerX, padTop + plotH);
@@ -1367,7 +1298,6 @@
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Marker circle
       ctx.beginPath();
       ctx.arc(markerX, markerY, 6, 0, Math.PI * 2);
       ctx.fillStyle = '#f59e0b';
@@ -1376,13 +1306,12 @@
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Update scrub readout text
       const hh = String(Math.floor(activeHr) % 24).padStart(2, '0');
       const mm = String(Math.floor((activeHr % 1) * 60)).padStart(2, '0');
-      const labelPrefix = state.tideScrubHour !== null ? `${hh}:${mm} MUT` : `NOW (${hh}:${mm})`;
+      const labelPrefix = state.tideScrubHour !== null ? `${hh}:${mm} MUT` : `ASTER (${hh}:${mm})`;
       document.getElementById('scrubTimeDisplay').textContent = `${labelPrefix} • ${activeVal.toFixed(2)}m`;
       document.getElementById('scrubFlowDisplay').textContent =
-        flowKt >= 0 ? `Flood Current +${flowKt} kt (Inward)` : `Ebb Pass Flow ${flowKt} kt (Outward)`;
+        flowKt >= 0 ? `Kouran Monte +${flowKt} kt (An Dan Lagon)` : `Kouran Desann Pas ${flowKt} kt (Dehor)`;
 
       ctx.restore();
     }
@@ -1408,15 +1337,9 @@
       canvas.addEventListener('pointermove', (e) => {
         if (e.buttons > 0 || e.pressure > 0) handleScrub(e.clientX);
       });
-      canvas.addEventListener('pointerup', () => {
-        // Keep selected scrub position visible for easy reading
-      });
+      canvas.addEventListener('pointerup', () => {});
     }
 
-    // =========================================================================
-    // 7. RODRIGUES ISLAND TACTICAL CHART & FISH RADAR (CANVAS + TOUCH PAN/ZOOM)
-    // =========================================================================
-    // Accurate geographic polygon coordinates (Lon, Lat) for Rodrigues Island & Barrier Reef
     const RODRIGUES_MAINLAND = [
       [63.421, -19.679], [63.448, -19.675], [63.475, -19.680], [63.495, -19.696],
       [63.504, -19.714], [63.496, -19.736], [63.478, -19.754], [63.455, -19.766],
@@ -1439,9 +1362,9 @@
     ];
 
     const PASS_HAZARDS = [
-      { name: "Passe Grand Bassin (Ebb Breakers)", lon: 63.470, lat: -19.666 },
-      { name: "Passe St. François (Strong Current)", lon: 63.512, lat: -19.712 },
-      { name: "North Pass Channel Entrance", lon: 63.421, lat: -19.660 }
+      { name: "Passe Grand Bassin (Pas pou Sorti - Gro Laf-Disan)", lon: 63.470, lat: -19.666 },
+      { name: "Passe St. François (Pas pou Sorti - Kouran For)", lon: 63.512, lat: -19.712 },
+      { name: "North Pass Channel (Pas pou Sorti Port Mathurin)", lon: 63.421, lat: -19.660 }
     ];
 
     function geoToScreen(lon, lat, w, h) {
@@ -1491,7 +1414,6 @@
       ctx.save();
       ctx.scale(dpr, dpr);
 
-      // Deep abyssal ocean gradient background
       const bgGrad = ctx.createRadialGradient(w * 0.5, h * 0.5, 20, w * 0.5, h * 0.5, Math.max(w, h) * 0.75);
       bgGrad.addColorStop(0, '#09223d');
       bgGrad.addColorStop(0.6, '#051324');
@@ -1499,7 +1421,6 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, w, h);
 
-      // Latitude / Longitude Tactical Graticule
       ctx.strokeStyle = 'rgba(56, 189, 248, 0.09)';
       ctx.lineWidth = 1;
       for (let lon = 63.15; lon <= 63.70; lon += 0.05) {
@@ -1519,7 +1440,6 @@
         ctx.stroke();
       }
 
-      // Bathymetry Contours (200m & 1000m drop-off rings)
       const islandCenter = geoToScreen(63.41, -19.72, w, h);
       [1.45, 2.05].forEach((mult, idx) => {
         ctx.beginPath();
@@ -1531,7 +1451,6 @@
         ctx.setLineDash([]);
       });
 
-      // Swell & Trade Wind Drift Vectors Layer
       if (state.layers.currents) {
         const rad = ((state.marine.waveDir + 180) * Math.PI) / 180;
         const dx = Math.sin(rad) * 22;
@@ -1552,7 +1471,6 @@
         }
       }
 
-      // Barrier Reef & Lagoon Turquoise Shelf + Rivière Banane MPA
       if (state.layers.reef) {
         drawPolygon(ctx, BARRIER_REEF_RING, w, h, true);
         ctx.fillStyle = 'rgba(6, 182, 212, 0.16)';
@@ -1563,7 +1481,6 @@
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Rivière Banane Marine Protected Area (MPA)
         const mpaPt = geoToScreen(63.475, -19.673, w, h);
         ctx.beginPath();
         ctx.arc(mpaPt.x, mpaPt.y, 16 * state.map.zoom, 0, Math.PI * 2);
@@ -1574,7 +1491,6 @@
         ctx.stroke();
       }
 
-      // Rodrigues Mainland Island Mass
       drawPolygon(ctx, RODRIGUES_MAINLAND, w, h, true);
       ctx.fillStyle = '#1e293b';
       ctx.fill();
@@ -1582,7 +1498,6 @@
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Mainland Landmarks
       const landmarks = [
         { name: "PORT MATHURIN", lon: 63.421, lat: -19.683 },
         { name: "MT. LIMON (398m)", lon: 63.418, lat: -19.722 },
@@ -1596,7 +1511,6 @@
         ctx.fillText(lm.name, pt.x - 28, pt.y);
       });
 
-      // Outer Lagoon Islets
       ISLETS.forEach(isl => {
         const pt = geoToScreen(isl.lon, isl.lat, w, h);
         ctx.beginPath();
@@ -1611,7 +1525,6 @@
         ctx.fillText(isl.name, pt.x + 6, pt.y + 3);
       });
 
-      // Pass Hazard Markers Layer
       if (state.layers.hazards) {
         PASS_HAZARDS.forEach(hz => {
           const pt = geoToScreen(hz.lon, hz.lat, w, h);
@@ -1628,7 +1541,6 @@
         });
       }
 
-      // Interactive Fish Hotspots & FADs Layer
       state.map.hitTargets = [];
       if (state.layers.hotspots) {
         FISH_HOTSPOTS.forEach(spot => {
@@ -1636,10 +1548,8 @@
           const isSelected = state.selectedSpot && state.selectedSpot.id === spot.id;
           const color = spot.type === 'fad' ? '#00e5ff' : '#10b981';
 
-          // Store generous 28px touch radius for mobile tapping
           state.map.hitTargets.push({ spot, x: pt.x, y: pt.y, r: 28 });
 
-          // Outer glow ring for selected spot
           if (isSelected) {
             ctx.beginPath();
             ctx.arc(pt.x, pt.y, 18, 0, Math.PI * 2);
@@ -1650,7 +1560,6 @@
             ctx.stroke();
           }
 
-          // Core marker beacon
           ctx.beginPath();
           ctx.arc(pt.x, pt.y, isSelected ? 9 : 7.5, 0, Math.PI * 2);
           ctx.fillStyle = color;
@@ -1659,7 +1568,6 @@
           ctx.lineWidth = 2;
           ctx.stroke();
 
-          // Spot Label Pill
           ctx.font = '700 11px "Inter", sans-serif';
           const label = `${spot.title.split(' ')[0]} ${spot.title.split(' ')[1] || ''} (${spot.bitePct}%)`;
           const textW = ctx.measureText(label).width;
@@ -1686,7 +1594,7 @@
       state.map.centerLon = 63.415;
       state.map.centerLat = -19.705;
       drawRodriguesChart();
-      showToast('Chart centered on Rodrigues Island');
+      showToast('Kat santre lor Rodrigues');
     }
 
     function toggleMapLayer(layerKey) {
@@ -1704,7 +1612,7 @@
 
     function selectFishSpot(spot, switchToMap = false) {
       state.selectedSpot = spot;
-      document.getElementById('inspBadge').textContent = `ACTIVE MARK • ${spot.bitePct}% BITE`;
+      document.getElementById('inspBadge').textContent = `MARK AKTIF • ${spot.bitePct}% LAPES`;
       document.getElementById('inspCoords').textContent = spot.coordsText;
       document.getElementById('inspTitle').textContent = spot.title;
       document.getElementById('inspDesc').textContent = spot.desc;
@@ -1724,7 +1632,7 @@
     function copySpotCoordinates() {
       const s = state.selectedSpot;
       if (!s) return;
-      copyText(`${s.title} (${s.coordsText} | ${s.lat}, ${s.lon})`, `Copied GPS: ${s.coordsText}`);
+      copyText(`${s.title} (${s.coordsText} | ${s.lat}, ${s.lon})`, `Kope GPS: ${s.coordsText}`);
     }
 
     function setupMapInteractions() {
@@ -1751,7 +1659,6 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        // Update live cursor GPS readout
         const geo = screenToGeo(x, y, rect.width, rect.height);
         const latDeg = Math.abs(Math.trunc(geo.lat));
         const latMin = ((Math.abs(geo.lat) - latDeg) * 60).toFixed(1);
@@ -1778,7 +1685,6 @@
         const distMoved = Math.hypot(x - pointerDownPos.x, y - pointerDownPos.y);
         state.map.isDragging = false;
 
-        // If tap (minimal movement), check hit targets
         if (distMoved < 10) {
           let closest = null;
           let minD = Infinity;
@@ -1791,21 +1697,17 @@
           });
           if (closest) {
             selectFishSpot(closest, false);
-            showToast(`Selected: ${closest.title}`);
+            showToast(`Swazi: ${closest.title}`);
           }
         }
       });
 
-      // Mouse wheel zoom support on desktop
       canvas.addEventListener('wheel', (e) => {
         e.preventDefault();
         zoomMap(e.deltaY < 0 ? 1.15 : 0.87);
       }, { passive: false });
     }
 
-    // =========================================================================
-    // 8. RENDER QUICK LISTS, VHF DIRECTORY, CHECKLIST & WEB AUDIO TONE
-    // =========================================================================
     function renderHotspotQuickList() {
       const container = document.getElementById('hotspotQuickList');
       if (!container) return;
@@ -1836,7 +1738,7 @@
           : 'bg-slate-800 text-slate-300 border-slate-700';
 
         return `
-          <button onclick="copyText('${item.ch} (${item.freq}) - ${item.name}', 'Copied ${item.ch} (${item.freq})')" class="w-full min-h-[60px] p-3 rounded-xl bg-slate-900/50 light-glare:bg-slate-100 border border-sky-500/15 flex items-center justify-between gap-3 text-left active:scale-[0.98] transition">
+          <button onclick="copyText('${item.ch} (${item.freq}) - ${item.name}', 'Kope ${item.ch} (${item.freq})')" class="w-full min-h-[60px] p-3 rounded-xl bg-slate-900/50 light-glare:bg-slate-100 border border-sky-500/15 flex items-center justify-between gap-3 text-left active:scale-[0.98] transition">
             <div class="min-w-0">
               <div class="flex items-center gap-2">
                 <span class="px-2 py-0.5 rounded-lg border text-xs font-mono font-extrabold ${badgeStyle}">${item.ch}</span>
@@ -1877,7 +1779,7 @@
       const count = Object.values(state.checklist).filter(Boolean).length;
       const progEl = document.getElementById('checklistProgress');
       if (progEl) {
-        progEl.textContent = `${count}/${SAFETY_ITEMS.length} READY`;
+        progEl.textContent = `${count}/${SAFETY_ITEMS.length} PRÉ`;
         progEl.className = count === SAFETY_ITEMS.length
           ? 'text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400'
           : 'text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-400';
@@ -1889,7 +1791,6 @@
       renderSafetyChecklist();
     }
 
-    // Pure Web Audio API Marine VHF Dual-Tone Safety Check (No external audio files)
     function playVhfAttentionTone() {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -1907,15 +1808,12 @@
           osc.start(now + idx * 0.16);
           osc.stop(now + (idx + 1) * 0.16);
         });
-        showToast('Playing Marine VHF 1300/2200 Hz Safety Test Tone');
+        showToast('Pe zwe son tes VHF 1300/2200 Hz');
       } catch (e) {
-        showToast('Audio test unavailable on muted device');
+        showToast('Audio pa disponib lor sa aparèy la');
       }
     }
 
-    // =========================================================================
-    // 9. INITIALIZATION & RESPONSIVE RESIZE HANDLERS
-    // =========================================================================
     window.addEventListener('resize', () => {
       resizeMapCanvas();
       drawRodriguesChart();
@@ -1933,13 +1831,11 @@
       initTidesAndSolunar();
       setupMapInteractions();
 
-      // Initial canvas sizing
       resizeMapCanvas();
       drawRodriguesChart();
       resizeTideCanvas();
       drawTideChart();
 
-      // Fetch live marine telemetry for Port Mathurin / Rodrigues Island
       fetchLiveRodriguesTelemetry();
     });
   </script>
